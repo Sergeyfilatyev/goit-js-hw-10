@@ -12,6 +12,7 @@ refs.input.addEventListener(
 
 function onInputNameCountry() {
   refs.countryList.innerHTML = '';
+  refs.countryInfo.innerHTML = '';
   const inputValueTrim = refs.input.value.trim();
   fetchCountries(inputValueTrim);
 }

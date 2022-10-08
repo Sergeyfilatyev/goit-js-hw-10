@@ -12,31 +12,29 @@ export function fetchCountries(name) {
     })
     .then(countries => {
       if (countries.length >= 2 && countries.length <= 10) {
-        console.log('2-10');
         return countries.map(({ name, flags }) => {
           const markup = `<li class="country-list__item">
-        <img class="country-list__img" src="${flags.svg}" width="40" alt="${name.official}" /><span
+        <img class="country-list__img" src="${flags.svg}" width="40" alt="${name.common}" /><span
           class="country-list__text"
-        >${name.official}</span>
+        >${name.common}</span>
       </li>`;
-          console.log(refs.countryList);
-          console.log(markup);
           refs.countryList.insertAdjacentHTML('beforeend', markup);
         });
       }
       if (countries.length === 1) {
-        console.log('1');
         return countries.map(
           ({ name, flags, capital, population, languages }) => {
-            const markup = ` <img class="country-info__img" width="35" src="" alt="" /><span
+            const markup = ` <img class="country-info__img" width="40" src="${
+              flags.svg
+            }" alt="${name.common}" /><span
         class="country-info__head"
-      >
+      >${name.common}
       </span>
-      <p class="country-info__key"><span class="country-info__value"></span></p>
-      <p class="country-info__key"><span class="country-info__value"></span></p>
-      <p class="country-info__key"><span class="country-info__value"></span></p>`;
-            console.log(refs.countryInfo);
-            console.log(markup);
+      <p class="country-info__key">Capital:<span class="country-info__value">${capital}</span></p>
+      <p class="country-info__key">Population:<span class="country-info__value">${population}</span></p>
+      <p class="country-info__key">Languages:<span class="country-info__value">${Object.values(
+        languages
+      )}</span></p>`;
             refs.countryInfo.innerHTML = markup;
           }
         );
